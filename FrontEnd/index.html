@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">UNIDAD DE ADMINISTRACIÓN DE ARCHIVOS</h1>
+        <h2 class="subtitle">ARCHIVO DE CONCENTRACIÓN</h2>
+
+        <div class="form-group">
+            <label for="fondo">Fondo:</label>
+            <input type="text" id="fondo" value="UNIVERSIDAD DE GUANAJUATO" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="subfondo">Subfondo:</label>
+            <input type="text" id="subfondo" value="CAMPUS IRAPUATO-SALAMANCA" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="entidad">Entidad Académica o Dependencia Administrativa:</label>
+            <select id="entidad">
+                <option>RECTORÍA DEL CAMPUS IRAPUATO-SALAMANCA</option>
+                <!-- Otras opciones -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="departamento">Departamento:</label>
+            <select id="departamento">
+                <option>COORDINACIÓN DE ASUNTOS ESCOLARES</option>
+                <!-- Otras opciones -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="codigoArea">Código del Área:</label>
+            <input type="text" id="codigoArea" value="400201" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="titular">Titular del Área:</label>
+            <input type="text" id="titular" value="MTRO. HERIBERTO GUTIÉRREZ MARTÍN" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="cargoTitular">Cargo del Titular del Área:</label>
+            <input type="text" id="cargoTitular" value="COORDINACIÓN DE LA UNIDAD DE ASUNTOS ESCOLARES" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="responsableArchivo">Responsable de Archivo de Trámite:</label>
+            <select id="responsableArchivo">
+                <option>MARÍA FERNANDA ESQUIVEL GÓMEZ</option>
+                <!-- Otras opciones -->
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button id="consultarExpediente" class="menu-button">Consultar Expediente</button>
+            <button id="solicitudAsesoria" class="menu-button">Solicitud de Asesoría GDA-FO-10</button>
+            <button id="solicitudTransferencia" class="menu-button">Solicitud de Transferencia</button>
+        </div>
+    </div>
+
+    <script >
+         document.getElementById('consultarExpediente').addEventListener('click', function() {
+        window.location.href = 'consulta_expediente.html';
+    });
+    document.getElementById('solicitudAsesoria').addEventListener('click', function() {
+        window.location.href = 'solicitud_asesoria.html';
+    });
+    document.getElementById('solicitudTransferencia').addEventListener('click', function() {
+        window.location.href = 'solicitud_transferencia.html';
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Préstamo</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">UNIDAD DE ADMINISTRACIÓN DE ARCHIVOS</h1>
+        <h2 class="subtitle">ARCHIVO DE CONCENTRACIÓN</h2>
+        <h3 class="subtitle">SOLICITUD DE PRÉSTAMO</h3>
+
+        <div class="form-section">
+            <div class="form-group">
+                <label for="folio">Folio Generado:</label>
+                <input type="text" id="folio">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaSolicitud">Fecha de Solicitud:</label>
+                <input type="date" id="fechaSolicitud">
+            </div>
+
+            <div class="form-group">
+                <label for="motivo">Motivo de Préstamo:</label>
+                <input type="text" id="motivo">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaDevolucion">Fecha de Devolución:</label>
+                <input type="date" id="fechaDevolucion">
+            </div>
+
+            <div class="form-group">
+                <label for="comentarios">Comentarios Adicionales:</label>
+                <textarea id="comentarios" rows="4"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="menu-button">Imprimir Ficha de Consulta GDA-FO-11</button>
+                <button class="menu-button">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Asesoría</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">UNIDAD DE ADMINISTRACIÓN DE ARCHIVOS</h1>
+        <h2 class="subtitle">ARCHIVO DE CONCENTRACIÓN</h2>
+        <h3 class="subtitle">SOLICITUD DE ASESORÍA</h3>
+
+        <div class="form-section">
+            <h4>Datos del Solicitante</h4>
+
+            <div class="form-group">
+                <label for="comunidadUG">Tipo:</label>
+                <select id="comunidadUG">
+                    <option value="UG">Comunidad UG</option>
+                    <option value="Otro">Otro (Externos)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nombreSolicitante">Nombre del Solicitante:</label>
+                <input type="text" id="nombreSolicitante">
+            </div>
+
+            <div class="form-group">
+                <label for="dependencia">Dependencia:</label>
+                <input type="text" id="dependencia">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Número Telefónico:</label>
+                <input type="text" id="telefono">
+            </div>
+
+            <div class="form-group">
+                <label for="cargo">Cargo/Puesto:</label>
+                <input type="text" id="cargo">
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de Servicio:</label>
+                <select id="tipoAsesoria">
+                    <option value="">-- Seleccionar --</option>
+                    <option value="Asesoria">Asesoría</option>
+                    <option value="Capacitacion">Capacitación</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tema">Tema u Objetivo de la Asesoría o Capacitación:</label>
+                <input type="text" id="tema">
+            </div>
+
+            <div class="form-group">
+                <label>Modalidad</label>
+                <select id="modalidad">
+                    <option value="">-- Seleccionar --</option>
+                    <option value="Asesoria">Presencial</option>
+                    <option value="Capacitacion">Virtual</option>
+                    <option value="Capacitacion">Hibrido</option>
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button onclick="abrirNuevaPestana()" class="menu-button">Consultar Procedimiento GDA-PR-05</button>
+                <button class="menu-button">Enviar</button>
+                <button  class="menu-button" >Imprimir Solicitud GDA-FO-10</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+
+    <script type="text/javascript">
+        function abrirNuevaPestana() {
+            window.open("https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fugto.mx%2Fcalidadug%2Fsistema_sigpi%2Fsistema_sigpi_ug%2Fgestion%2Fpro-gda%2Ffo%2Ffo%2FGDA-FO-10.docx&wdOrigin=BROWSELINK", "_blank");
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init('29J_q7cZ6vD2vL35G');
+    </script>
+</body>
+
+</html>
