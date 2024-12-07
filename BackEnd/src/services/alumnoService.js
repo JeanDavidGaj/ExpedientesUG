@@ -33,5 +33,30 @@ exports.getAllAlumnos = async () => {
 	}
 }
 
+const { createPrestamo } = require('../models/AlumnosModel');
+
+exports.createPrestamo = async (nua, prestamoData) => {
+    try {
+        const result = await createPrestamo(nua, prestamoData);
+        if (result.success) {
+            return {
+                success: true,
+                folio: result.folio
+            };
+        }
+        return {
+            success: false,
+            message: result.error
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+};
+
+
+
 
 

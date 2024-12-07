@@ -39,3 +39,25 @@ exports.getAllAlumnos = async () => {
 		throw new Error('Error getting users: ' + error.message)
 	}
 }
+
+
+
+exports.createPrestamo = async (nua, prestamoData) => {
+    try {
+        const PrestamosCollection = firebase.firestore().collection('Prestamos');
+        const nuevoPrestamo = await PrestamosCollection.add({
+            ...prestamoData, // Incluye el folio directamente desde el frontend
+            nua
+        });
+        return {
+            success: true,
+            folio: prestamoData.folio // Confirma el folio utilizado
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+};
+

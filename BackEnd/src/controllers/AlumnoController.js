@@ -39,4 +39,44 @@ exports.getAlumnoByNUA = async (req, res) => {
     }
 };
 
+const { createPrestamo } = require('../services/alumnoService');
+
+exports.createPrestamo = async (req, res) => {
+    const { nua } = req.params;
+    const { folio, fechaSolicitud, fechaDevolucion, motivo, comentarios } = req.body;
+
+    if (!folio || !fechaSolicitud || !fechaDevolucion || !motivo) {
+        return res.status(400).json({
+            message: 'Todos los campos son obligatorios, incluyendo el folio.'
+        });
+    }
+
+    try {
+        const result = await createPrestamo(nua, {
+            folio,
+            fechaSolicitud,
+            fechaDevolucion,
+            motivo,
+            comentarios
+        });
+
+        if (result.success) {
+            res.status(201).json({
+                message: 'Préstamo creado con éxito',
+                folio: result.folio
+            });
+        } else {
+            res.status(500).json({
+                message: 'Error al crear el préstamo',
+                error: result.message
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error del servidor al crear el préstamo',
+            error: error.message
+        });
+    }
+};
+
 
