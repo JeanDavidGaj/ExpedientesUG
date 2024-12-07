@@ -66,9 +66,27 @@
     </div>
 
     <script>
-    document.getElementById('solicitud_prestamo').addEventListener('click', function() {
-        window.location.href = 'solicitud_prestamo.html';
-    });
+
+        
+
+document.getElementById('solicitud_prestamo').addEventListener('click', function () {
+    const nua = document.getElementById('nua').value;
+
+    if (!nua) {
+        alert('Por favor ingresa el NUA antes de generar la solicitud.');
+        return;
+    }
+
+    const fechaActual = new Date().toISOString().split('T')[0].replace(/-/g, ''); // YYYYMMDD
+    const folio = `${fechaActual}-${nua}`;
+
+    localStorage.setItem('folio', folio);
+    localStorage.setItem('nua', nua);
+
+    window.location.href = 'solicitud_prestamo.html';
+});
+
+
     
     function abrirNuevaPestana() {
             window.open("https://intranet3.ugto.mx/SigaUG/Reporte/ProcedimientoPublico?id=226", "_blank");

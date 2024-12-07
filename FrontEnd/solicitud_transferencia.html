@@ -13,15 +13,53 @@
         <input type="file" id="solicitud" name="solicitud">
         <h2>Anexar Inventario de Transferencia Documental: GDA-FO-05</h2>
         <input type="file" id="inventario" name="inventario">
+        <button id="enviarArchivos" type="button" class="button_trans">Enviar</button>
     </div>
+    
     <div class="right-panel">
         <h2>Archivo de Concentración</h2>
         <h3>Solicitud de Transferencia</h3>
-        <button type="button" class="button_trans">Enviar</button>
-        <button type="button" class="button_trans">Consultar Procedimiento GDA-PR-03</button>
+        <button type="button" onclick="abrirNuevaPestana()" class="button_trans">Consultar Procedimiento GDA-PR-03</button>
         <button type="button" class="button_trans">Imprimir Respuesta a Solicitud</button>
     </div>
 </div>
+
+<script>
+     function abrirNuevaPestana() {
+            window.open("https://ugto.mx/calidadug/sistema_sigpi/gestion/pro-gda/fo/fo-GDA-PR-05.html", "_blank");
+        }
+    document.getElementById('enviarArchivos').addEventListener('click', async () => {
+        const solicitud = document.getElementById('solicitud').files[0];
+        const inventario = document.getElementById('inventario').files[0];
+
+        if (!solicitud || !inventario) {
+            alert('Por favor, sube ambos archivos antes de enviar.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('solicitud', solicitud);
+        formData.append('inventario', inventario);
+
+        try {
+            const response = await fetch('http://localhost:6010/enviar-correo', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Archivos enviados correctamente.');
+            } else {
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error enviando archivos:', error);
+            alert('Hubo un problema al enviar los archivos.');
+        }
+    });
+</script>
+
 </body>
 </html>
 

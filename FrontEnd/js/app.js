@@ -130,7 +130,7 @@
             };
     
             // Enviar el correo electrónico usando EmailJS
-            emailjs.send("service_86zl0qv", "template_1cg8aod", templateParams) // Reemplaza con tu service_id y template_id
+            emailjs.send("service_mw245r6", "template_rdroct8", templateParams) // Reemplaza con tu service_id y template_id
                 .then(function(response) {
                     alert("Correo enviado exitosamente!");
                 }, function(error) {
@@ -139,4 +139,7 @@
                 });
         });
     });
+
+
+    
     

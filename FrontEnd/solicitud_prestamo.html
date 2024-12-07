@@ -47,7 +47,121 @@
         </div>
     </div>
 
-    <script src="./js/app.js"></script>
+    <script src="./js/app.js"> </script>
+    <script>
+        // Al cargar la página, mostrar el folio generado
+        document.addEventListener('DOMContentLoaded', function () {
+    const folio = localStorage.getItem('folio');
+    if (folio) {
+        document.getElementById('folio').value = folio;
+    } else {
+        console.error('No se encontró un folio generado en localStorage.');
+    }
+});
+
+    
+document.querySelector('.menu-button:nth-child(2)').addEventListener('click', async function () {
+    const folio = document.getElementById('folio').value;
+    const fechaSolicitud = document.getElementById('fechaSolicitud').value;
+    const fechaDevolucion = document.getElementById('fechaDevolucion').value;
+    const motivo = document.getElementById('motivo').value;
+    const comentarios = document.getElementById('comentarios').value;
+    const nua = localStorage.getItem('nua');
+
+    if (!folio || !fechaSolicitud || !fechaDevolucion || !motivo) {
+        alert('Por favor completa todos los campos obligatorios.');
+        return;
+    }
+
+    const data = {
+        folio,
+        fechaSolicitud,
+        fechaDevolucion,
+        motivo,
+        comentarios,
+        nua
+    };
+
+    try {
+        const response = await fetch(`http://localhost:6010/create-prestamo/${nua}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(`Préstamo registrado con éxito. Folio: ${result.folio}`);
+            localStorage.removeItem('folio');
+            localStorage.removeItem('nua');
+            window.location.href = 'consulta_expediente.html';
+        } else {
+            alert(`Error: ${result.message || 'No se pudo registrar el préstamo.'}`);
+        }
+    } catch (error) {
+        console.error('Error enviando datos:', error);
+        alert('Hubo un problema al registrar el préstamo.');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const generarArchivoButton = document.createElement("button");
+    generarArchivoButton.textContent = "Generar Archivo de Solicitud";
+    generarArchivoButton.className = "menu-button";
+
+    // Añadir el botón al formulario
+    const buttonGroup = document.querySelector(".button-group");
+    buttonGroup.appendChild(generarArchivoButton);
+
+    generarArchivoButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // Obtener los valores del formulario
+        const folio = document.getElementById("folio").value;
+        const fechaSolicitud = document.getElementById("fechaSolicitud").value;
+        const fechaDevolucion = document.getElementById("fechaDevolucion").value;
+        const motivo = document.getElementById("motivo").value;
+        const comentarios = document.getElementById("comentarios").value;
+
+        // Validar que los campos necesarios estén llenos
+        if (!folio || !fechaSolicitud || !fechaDevolucion || !motivo) {
+            alert("Por favor, complete todos los campos obligatorios antes de generar el archivo.");
+            return;
+        }
+
+        // Crear el contenido del archivo de texto
+        const contenido = `
+        Solicitud de Préstamo
+        =====================
+        Folio: ${folio}
+        Fecha de Solicitud: ${fechaSolicitud}
+        Fecha de Devolución: ${fechaDevolucion}
+        Motivo: ${motivo}
+        Comentarios: ${comentarios}
+        `;
+
+        // Crear un blob con el contenido
+        const blob = new Blob([contenido], { type: "text/plain" });
+
+        // Crear un enlace para descargar el archivo
+        const enlace = document.createElement("a");
+        enlace.href = URL.createObjectURL(blob);
+        enlace.download = `Solicitud_Prestamo_${folio}.txt`;
+
+        // Simular un clic en el enlace para iniciar la descarga
+        enlace.click();
+
+        // Limpiar el objeto URL
+        URL.revokeObjectURL(enlace.href);
+    });
+});
+
+
+    </script>
+    
 </body>
 
 </html>
